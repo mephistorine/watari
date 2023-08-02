@@ -1,15 +1,24 @@
 {
-  "extends": ["../../.eslintrc.json"],
-  "ignorePatterns": ["!**/*"],
+  "extends": [
+    "../../.eslintrc.json"
+  ],
+  "ignorePatterns": [
+    "!**/*"
+  ],
   "overrides": [
     {
-      "files": ["*.ts"],
+      "files": [
+        "*.ts"
+      ],
+      "parserOptions": {
+        "project": "./tsconfig.base.json"
+      },
       "rules": {
         "@angular-eslint/directive-selector": [
           "error",
           {
             "type": "attribute",
-            "prefix": "watari",
+            "prefix": "ri",
             "style": "camelCase"
           }
         ],
@@ -17,7 +26,7 @@
           "error",
           {
             "type": "element",
-            "prefix": "watari",
+            "prefix": "ri",
             "style": "kebab-case"
           }
         ]
@@ -28,8 +37,12 @@
       ]
     },
     {
-      "files": ["*.html"],
-      "extends": ["plugin:@nx/angular-template"],
+      "files": [
+        "*.html"
+      ],
+      "extends": [
+        "plugin:@nx/angular-template"
+      ],
       "rules": {}
     }
   ]

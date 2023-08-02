@@ -1,10 +1,10 @@
-import { Component, ViewEncapsulation } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, ViewEncapsulation } from "@angular/core"
+import { CommonModule } from "@angular/common"
 
 @Component({
-  selector: 'watari-nx-welcome',
+  selector: "watari-nx-welcome",
   standalone: true,
-  imports: [CommonModule],
+  imports: [ CommonModule ],
   template: `
     <!--
      * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -851,6 +851,7 @@ nx affected:e2e</pre>
     </div>
   `,
   styles: [],
-  encapsulation: ViewEncapsulation.None,
+  encapsulation: ViewEncapsulation.None
 })
-export class NxWelcomeComponent {}
+export class NxWelcomeComponent {
+}
