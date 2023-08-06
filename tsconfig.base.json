@@ -14,7 +14,11 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@watari/auth/domain": ["libs/auth/domain/src/index.ts"],
+      "@watari/shared/util-common": ["libs/shared/util-common/src/index.ts"],
+      "@watari/shared/util-config": ["libs/shared/util-config/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
