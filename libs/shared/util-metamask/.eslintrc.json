@@ -12,7 +12,7 @@
           "error",
           {
             "type": "attribute",
-            "prefix": "auth",
+            "prefix": "metamask",
             "style": "camelCase"
           }
         ],
@@ -20,7 +20,7 @@
           "error",
           {
             "type": "element",
-            "prefix": "auth",
+            "prefix": "metamask",
             "style": "kebab-case"
           }
         ]

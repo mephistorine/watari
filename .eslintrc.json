@@ -6,6 +6,9 @@
     {
       "files": ["*.ts"],
       "extends": ["plugin:@nx/typescript"],
+      "parserOptions": {
+        "project": "./tsconfig.base.json"
+      },
       "rules": {
         "@nx/enforce-module-boundaries": [
           "error",
@@ -80,7 +83,7 @@
         "indent": "off",
         "comma-dangle": ["error", "never"],
         "curly": "error",
-        "array-bracket-spacing": ["error", "never"],
+        "array-bracket-spacing": ["error", "always"],
         "require-jsdoc": "off",
         "new-cap": [
           "error",
