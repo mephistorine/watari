@@ -1,3 +1,3 @@
 export * from "./lib/auth-domain.module"
 
-export * from "./lib/application/auth-page.facade"
+export * from "./lib/application/auth.service"

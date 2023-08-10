@@ -1,7 +1,6 @@
-import { ChangeDetectionStrategy, Component, Inject } from "@angular/core"
-import { AuthPageFacade } from "@watari/auth/domain"
+import { ChangeDetectionStrategy, Component, inject } from "@angular/core"
 import { TuiButtonModule } from "@taiga-ui/core"
-import { METAMASK_PROVIDER, MetamaskProvider } from "@watari/shared/util-metamask"
+import { AuthService } from "@watari/auth/domain"
 
 @Component({
   selector: "auth-auth-page",
@@ -14,19 +13,11 @@ import { METAMASK_PROVIDER, MetamaskProvider } from "@watari/shared/util-metamas
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AuthPageComponent {
-  constructor(private authPageFacade: AuthPageFacade,
-              @Inject(METAMASK_PROVIDER) private metamaskProvider: MetamaskProvider) {
-  }
+  private readonly authService: AuthService = inject(AuthService)
 
   protected onClickConnectButton(): void {
-    this.metamaskProvider
-      .request({
-        method: "eth_requestAccounts",
-        params: []
-      })
-      .then(console.log)
-      .catch((error) => {
-        debugger
-      })
+    /*this.authService
+      .loginWithMetamask()
+      .subscribe()*/
   }
 }

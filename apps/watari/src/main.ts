@@ -1,4 +1,4 @@
-import { EnvironmentProviders } from "@angular/core"
+import { Provider } from "@angular/core"
 import { bootstrapApplication } from "@angular/platform-browser"
 import { defineConfig } from "@watari/shared/util-config"
 import { MetaMaskSDK } from "@metamask/sdk"
@@ -26,7 +26,7 @@ fetch("/configs/config.json", {
           provide: METAMASK_INSTANCE,
           useValue: metamask
         }
-      ] as EnvironmentProviders)
+      ] as Provider[])
     ).catch((err) =>
       console.error(err)
     )
