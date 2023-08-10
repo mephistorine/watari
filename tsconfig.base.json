@@ -21,7 +21,10 @@
       ],
       "@watari/shared/util-common": ["libs/shared/util-common/src/index.ts"],
       "@watari/shared/util-config": ["libs/shared/util-config/src/index.ts"],
-      "@watari/shared/util-metamask": ["libs/shared/util-metamask/src/index.ts"]
+      "@watari/shared/util-metamask": [
+        "libs/shared/util-metamask/src/index.ts"
+      ],
+      "@watari/user/domain": ["libs/user/domain/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

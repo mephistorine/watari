@@ -1,0 +1,41 @@
+{
+  "name": "user-domain",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/user/domain/src",
+  "prefix": "user",
+  "tags": [
+    "domain:user",
+    "type:domain-logic"
+  ],
+  "projectType": "library",
+  "targets": {
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": [
+        "{workspaceRoot}/coverage/{projectRoot}"
+      ],
+      "options": {
+        "jestConfig": "libs/user/domain/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": [
+        "{options.outputFile}"
+      ],
+      "options": {
+        "lintFilePatterns": [
+          "libs/user/domain/**/*.ts",
+          "libs/user/domain/**/*.html"
+        ]
+      }
+    }
+  }
+}
