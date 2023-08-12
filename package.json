@@ -3,8 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "nx serve watari --port 8000",
-    "format": "nx format"
+    "start": "nx serve watari --port 8000"
   },
   "private": true,
   "dependencies": {

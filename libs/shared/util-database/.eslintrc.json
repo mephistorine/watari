@@ -12,7 +12,7 @@
           "error",
           {
             "type": "attribute",
-            "prefix": "config",
+            "prefix": "database",
             "style": "camelCase"
           }
         ],
@@ -20,7 +20,7 @@
           "error",
           {
             "type": "element",
-            "prefix": "config",
+            "prefix": "database",
             "style": "kebab-case"
           }
         ]
