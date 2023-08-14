@@ -1,6 +1,8 @@
 import { ChangeDetectionStrategy, Component, inject } from "@angular/core"
 import { TuiButtonModule } from "@taiga-ui/core"
+import { EMPTY, switchMap } from "rxjs"
 import { AuthService } from "@watari/auth/domain"
+import { UsersService } from "@watari/user/domain"
 
 @Component({
   selector: "auth-auth-page",
@@ -15,9 +17,20 @@ import { AuthService } from "@watari/auth/domain"
 export class AuthPageComponent {
   private readonly authService: AuthService = inject(AuthService)
 
+  private readonly usersService: UsersService = inject(UsersService)
+
   protected onClickConnectButton(): void {
-    /*this.authService
+    this.authService
       .loginWithMetamask()
-      .subscribe()*/
+      .pipe(
+        switchMap((id: string | null) => {
+          if (id === null) {
+            return EMPTY
+          }
+
+          return this.usersService.findOneById(id)
+        })
+      )
+      .subscribe(console.log)
   }
 }

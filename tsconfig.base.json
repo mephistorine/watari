@@ -24,6 +24,7 @@
       "@watari/shared/util-database": [
         "libs/shared/util-database/src/index.ts"
       ],
+      "@watari/shared/util-domain": ["libs/shared/util-domain/src/index.ts"],
       "@watari/shared/util-metamask": [
         "libs/shared/util-metamask/src/index.ts"
       ],

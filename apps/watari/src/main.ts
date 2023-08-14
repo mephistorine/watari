@@ -32,7 +32,7 @@ const DATABASE_SCHEMA: string = `
 `
 
 forkJoin([
-  openDatabaseConnection(),
+  openDatabaseConnection(DATABASE_SCHEMA),
   loadConfig()
 ]).pipe(
   switchMap(([ dbConnection, config ]) => {
@@ -49,6 +49,14 @@ forkJoin([
           provide: DATABASE_CONNECTION,
           useValue: dbConnection
         }
+        /*{
+          provide: APP_INITIALIZER,
+          multi: true,
+          useFactory: (appRef: ApplicationRef, databaseConnection: DatabaseConnection) => {
+            databaseConnection.tblrx.onAny(() => appRef.tick())
+          },
+          deps: [ ApplicationRef, DATABASE_CONNECTION ]
+        }*/
       ] as Provider[])
     )
   })

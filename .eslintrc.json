@@ -217,7 +217,7 @@
         "@typescript-eslint/ban-tslint-comment": "warn",
         "@typescript-eslint/consistent-type-definitions": [
           "error",
-          "interface"
+          "type"
         ],
         "@typescript-eslint/explicit-member-accessibility": [
           "error",

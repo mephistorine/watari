@@ -1,5 +1,5 @@
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations"
-import { TuiRootModule } from "@taiga-ui/core"
+import { TuiModeModule, TuiRootModule, TuiThemeNightModule } from "@taiga-ui/core"
 import { ApplicationConfig, importProvidersFrom, Provider } from "@angular/core"
 import { provideRouter, withEnabledBlockingInitialNavigation } from "@angular/router"
 import { provideAppConfig } from "@watari/shared/util-config"
@@ -12,7 +12,7 @@ export function provideApplicationConfig(extraProviders: Provider[]): Applicatio
     providers: [
       ...extraProviders,
       provideRouter(appRoutes, withEnabledBlockingInitialNavigation()),
-      importProvidersFrom(TuiRootModule, BrowserAnimationsModule),
+      importProvidersFrom(TuiRootModule, BrowserAnimationsModule, TuiThemeNightModule, TuiModeModule),
       provideAppConfig(),
       provideMetamask()
     ]

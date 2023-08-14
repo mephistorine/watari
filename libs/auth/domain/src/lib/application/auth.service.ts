@@ -1,5 +1,5 @@
 import { inject, Injectable } from "@angular/core"
-import { from, map, Observable } from "rxjs"
+import { catchError, from, map, Observable, of } from "rxjs"
 import { METAMASK_PROVIDER, MetamaskProvider } from "@watari/shared/util-metamask"
 
 @Injectable({
@@ -19,6 +19,15 @@ export class AuthService {
         }
 
         return ids[ 0 ] as string
+      }),
+      catchError((error) => {
+        if ("code" in error && error.code === 4001) {
+          return of(null)
+        }
+
+        console.debug(error)
+
+        return of(null)
       })
     )
   }

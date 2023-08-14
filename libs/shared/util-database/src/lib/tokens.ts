@@ -1,4 +1,4 @@
 import { InjectionToken } from "@angular/core"
-import { DB } from "@vlcn.io/crsqlite-wasm"
+import { DatabaseConnection } from "./types"
 
-export const DATABASE_CONNECTION: InjectionToken<DB> = new InjectionToken<DB>("Watari database connection")
+export const DATABASE_CONNECTION: InjectionToken<DatabaseConnection> = new InjectionToken<DatabaseConnection>("Watari database connection")
