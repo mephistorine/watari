@@ -21,6 +21,7 @@
     "@ng-web-apis/common": "3.0.2",
     "@nx/angular": "16.6.0",
     "@rx-angular/cdk": "16.0.0",
+    "@rx-angular/state": "16.0.0",
     "@rx-angular/template": "16.0.2",
     "@taiga-ui/addon-charts": "^3.39.1",
     "@taiga-ui/addon-commerce": "^3.39.1",

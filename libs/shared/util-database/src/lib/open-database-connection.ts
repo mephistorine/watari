@@ -7,14 +7,16 @@ import { DatabaseConnection } from "./types"
 
 export async function openDatabaseConnection(schema: string): Promise<DatabaseConnection> {
   const sqlite: SQLite3 = await initWasm(() => SQLITE_WASM_FILE_URL)
-  const database: DB = await sqlite.open(":memory:")
+  const database: DB = await sqlite.open("watari")
   await database.exec(schema)
 
-  await database.exec("insert into users (id, name, create_time) values (?, ?, ?)", [
+  /*await database.exec("insert into users (id, name, create_time) values (?, ?, ?)", [
     "0x850dc4ae7ea9a326ad227477292bdef8f8fd16c6",
     "Sam Bulatov",
     new Date().toISOString()
-  ])
+  ])*/
+
+  ;(window as any).db = database
 
   return {
     database,

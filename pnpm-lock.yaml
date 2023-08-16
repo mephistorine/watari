@@ -47,6 +47,9 @@ dependencies:
   '@rx-angular/cdk':
     specifier: 16.0.0
     version: 16.0.0(@angular-devkit/core@16.1.8)(@angular-devkit/schematics@16.1.8)(@angular/core@16.1.8)(rxjs@7.8.1)
+  '@rx-angular/state':
+    specifier: 16.0.0
+    version: 16.0.0(@angular-devkit/core@16.1.8)(@angular-devkit/schematics@16.1.8)(@angular/core@16.1.8)(rxjs@7.8.1)
   '@rx-angular/template':
     specifier: 16.0.2
     version: 16.0.2(@angular-devkit/core@16.1.8)(@angular-devkit/schematics@16.1.8)(@angular/core@16.1.8)(@rx-angular/cdk@16.0.0)(rxjs@7.8.1)
@@ -5114,6 +5117,21 @@ packages:
 
   /@rx-angular/cdk@16.0.0(@angular-devkit/core@16.1.8)(@angular-devkit/schematics@16.1.8)(@angular/core@16.1.8)(rxjs@7.8.1):
     resolution: {integrity: sha512-/phlUZWvFoH67DHlKwVzUIoN3xJQIKTiyuOkVdknb6NhS1ofrEWF1YY0oPD0Cf5kCjug9qIJo7frrhgTwslTxQ==}
+    peerDependencies:
+      '@angular/core': ^16.0.0
+      rxjs: ^6.5.3 || ^7.4.0
+    dependencies:
+      '@angular/core': 16.1.8(rxjs@7.8.1)(zone.js@0.13.1)
+      ng-morph: 2.2.5(@angular-devkit/core@16.1.8)(@angular-devkit/schematics@16.1.8)
+      rxjs: 7.8.1
+      tslib: 2.6.1
+    transitivePeerDependencies:
+      - '@angular-devkit/core'
+      - '@angular-devkit/schematics'
+    dev: false
+
+  /@rx-angular/state@16.0.0(@angular-devkit/core@16.1.8)(@angular-devkit/schematics@16.1.8)(@angular/core@16.1.8)(rxjs@7.8.1):
+    resolution: {integrity: sha512-16/cOD132Mi2ovvGr0oSkOXfaXQgpHIkr+3javPclzKzSAm52RB+YqfX8qzX4uyt2i4Gt56Or398nxtiQ+rOyA==}
     peerDependencies:
       '@angular/core': ^16.0.0
       rxjs: ^6.5.3 || ^7.4.0

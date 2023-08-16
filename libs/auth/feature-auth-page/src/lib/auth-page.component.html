@@ -1,5 +1,18 @@
-<div>
+<form class="auth-form">
   <h2>Login</h2>
-  <button tuiButton
-          (click)="onClickConnectButton()">Login with Metamask</button>
-</div>
+  <ng-container *rxLet="isShowRegistration; let isRegister">
+    <button *rxIf="!isRegister"
+            tuiButton
+            [showLoader]="isLoginButtonLoading | push"
+            (click)="onClickLoginButton()">Login with Metamask</button>
+
+    <ng-container *rxIf="isRegister">
+      <tui-input [formControl]="nameField">
+        Type your name
+        <input tuiTextfield type="text">
+      </tui-input>
+
+      <button tuiButton (click)="onClickCompleteRegisterButton()">Register</button>
+    </ng-container>
+  </ng-container>
+</form>
