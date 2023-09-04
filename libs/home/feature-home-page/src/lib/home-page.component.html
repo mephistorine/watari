@@ -7,10 +7,10 @@
     <header>
       <h3 class="tx-group-title">{{ group.date | date:"mediumDate" }}</h3>
 
-      <!--<div class="tx-group-additional">
-        <span>Income: <tui-money currency="RUB" [value]="-10728.9" /></span>
-        <span>Expense: <tui-money currency="RUB" [value]="300" /></span>
-      </div>-->
+      <div class="tx-group-additional">
+        <span>Income: <tui-money currency="RUB" [value]="group.income" /></span>
+        <span>Expense: <tui-money currency="RUB" [value]="group.expense" /></span>
+      </div>
     </header>
 
     <ul class="tx-list">

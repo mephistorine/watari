@@ -71,8 +71,8 @@ export class HomePageComponent {
       transactionsByDay.forEach((value: Transaction[], key: string) => {
         groups.push({
           date: new Date(key),
-          income: 0,
-          expense: 0,
+          income: value.filter((t) => t.type === "INCOME").reduce((acc, curr) => acc + curr.amount, 0) / 100,
+          expense: value.filter((t) => t.type === "EXPENSE").reduce((acc, curr) => acc + curr.amount, 0) / 100 * -1,
           items: value.map((transaction) => {
             const categoryId: string | null = transaction.categoryId
 
@@ -80,7 +80,7 @@ export class HomePageComponent {
               return {
                 categoryIcon: "tuiIconDisc",
                 categoryName: "Не известно",
-                transactionAmount: transaction.amount / 100,
+                transactionAmount: (transaction.type === "EXPENSE" ? transaction.amount * -1 : transaction.amount) / 100,
                 date: new Date(transaction.createTime)
               }
             }
@@ -90,7 +90,7 @@ export class HomePageComponent {
             return {
               categoryIcon: category.icon,
               categoryName: category.name,
-              transactionAmount: transaction.amount / 100,
+              transactionAmount: (transaction.type === "EXPENSE" ? transaction.amount * -1 : transaction.amount) / 100,
               date: new Date(transaction.createTime)
             }
           })
