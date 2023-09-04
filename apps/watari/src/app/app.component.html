@@ -1,4 +1,27 @@
 <tui-theme-night></tui-theme-night>
+
 <tui-root tuiMode="onDark">
+<!--<tui-root>-->
   <router-outlet></router-outlet>
+
+  <ng-container ngProjectAs="tuiOverContent">
+    <!-- Content over app content -->
+  </ng-container>
+  <ng-container ngProjectAs="tuiOverDialogs">
+    <!-- Content over dialogs -->
+  </ng-container>
+  <ng-container ngProjectAs="tuiOverAlerts">
+    <!-- Content over alerts -->
+  </ng-container>
+  <ng-container ngProjectAs="tuiOverPortals">
+    <!-- Content over dropdowns -->
+
+    <nav *ngIf="isAppTabBarEnabled | async" class="app-tab-bar" tuiTabBar>
+      <a tuiTabBarItem routerLink="/" icon="tuiIconHomeLarge" routerLinkActive></a>
+      <a tuiTabBarItem routerLink="/transactions/new" icon="tuiIconPlusLarge" routerLinkActive></a>
+    </nav>
+  </ng-container>
+  <ng-container ngProjectAs="tuiOverHints">
+    <!-- Content over hints -->
+  </ng-container>
 </tui-root>

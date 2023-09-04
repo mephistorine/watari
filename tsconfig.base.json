@@ -19,6 +19,11 @@
       "@watari/auth/feature-auth-page": [
         "libs/auth/feature-auth-page/src/index.ts"
       ],
+      "@watari/category/domain": ["libs/category/domain/src/index.ts"],
+      "@watari/home/domain": ["libs/home/domain/src/index.ts"],
+      "@watari/home/feature-home-page": [
+        "libs/home/feature-home-page/src/index.ts"
+      ],
       "@watari/shared/util-common": ["libs/shared/util-common/src/index.ts"],
       "@watari/shared/util-config": ["libs/shared/util-config/src/index.ts"],
       "@watari/shared/util-database": [
@@ -27,6 +32,10 @@
       "@watari/shared/util-domain": ["libs/shared/util-domain/src/index.ts"],
       "@watari/shared/util-metamask": [
         "libs/shared/util-metamask/src/index.ts"
+      ],
+      "@watari/transaction/domain": ["libs/transaction/domain/src/index.ts"],
+      "@watari/transaction/feature-new-transaction-page": [
+        "libs/transaction/feature-new-transaction-page/src/index.ts"
       ],
       "@watari/user/domain": ["libs/user/domain/src/index.ts"]
     }

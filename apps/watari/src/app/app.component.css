@@ -1,0 +1,9 @@
+:host {
+  /*padding-bottom: 56px;*/
+}
+
+.app-tab-bar {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}

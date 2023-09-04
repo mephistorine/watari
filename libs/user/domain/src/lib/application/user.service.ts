@@ -44,6 +44,7 @@ export class UserService {
     )
   }
 
+  // FIXME: Нужно вынести информации об авторизованном пользователе в другое место
   public setAuthedUser(user: User | null): void {
     this.authedUserStore.setUser(user)
   }

@@ -1,0 +1,27 @@
+<header class="tui-container tui-container_adaptive">
+  <h1>Hi, Sam!</h1>
+</header>
+
+<div class="tui-container tui-container_adaptive txs-container">
+  <section *ngFor="let group of transactionGroups | async" class="tx-group">
+    <header>
+      <h3 class="tx-group-title">{{ group.date | date:"mediumDate" }}</h3>
+
+      <!--<div class="tx-group-additional">
+        <span>Income: <tui-money currency="RUB" [value]="-10728.9" /></span>
+        <span>Expense: <tui-money currency="RUB" [value]="300" /></span>
+      </div>-->
+    </header>
+
+    <ul class="tx-list">
+      <li class="tx-info" *ngFor="let tx of group.items">
+        <tui-marker-icon class="tx-icon" [src]="tx.categoryIcon" size="s" />
+        <h3 class="tx-category-name">{{ tx.categoryName }}</h3>
+        <span class="tx-money">
+          <tui-money currency="RUB" [value]="tx.transactionAmount" [colored]="true" />
+        </span>
+        <span class="tx-time">{{ tx.date | date:"HH:MM" }}</span>
+      </li>
+    </ul>
+  </section>
+</div>

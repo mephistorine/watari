@@ -4,6 +4,7 @@ import { ApplicationConfig, importProvidersFrom, Provider } from "@angular/core"
 import { provideRouter, withEnabledBlockingInitialNavigation } from "@angular/router"
 import { provideAppConfig } from "@watari/shared/util-config"
 import { provideMetamask } from "@watari/shared/util-metamask"
+import { EventPluginsModule } from "@tinkoff/ng-event-plugins"
 
 import { appRoutes } from "./app.routes"
 
@@ -12,7 +13,7 @@ export function provideApplicationConfig(extraProviders: Provider[]): Applicatio
     providers: [
       ...extraProviders,
       provideRouter(appRoutes, withEnabledBlockingInitialNavigation()),
-      importProvidersFrom(TuiRootModule, BrowserAnimationsModule, TuiThemeNightModule, TuiModeModule),
+      importProvidersFrom(EventPluginsModule, TuiRootModule, BrowserAnimationsModule, TuiThemeNightModule, TuiModeModule),
       provideAppConfig(),
       provideMetamask()
     ]

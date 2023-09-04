@@ -61,6 +61,21 @@
               {
                 "sourceTag": "domain:user",
                 "onlyDependOnLibsWithTags": ["domain:user", "domain:shared"]
+              },
+              {
+                "sourceTag": "domain:transaction",
+                "onlyDependOnLibsWithTags": [
+                  "domain:transaction",
+                  "domain:shared"
+                ]
+              },
+              {
+                "sourceTag": "domain:home",
+                "onlyDependOnLibsWithTags": ["domain:home", "domain:shared"]
+              },
+              {
+                "sourceTag": "domain:category",
+                "onlyDependOnLibsWithTags": ["domain:category", "domain:shared"]
               }
             ]
           }
@@ -215,10 +230,7 @@
         ],
         "@typescript-eslint/await-thenable": "error",
         "@typescript-eslint/ban-tslint-comment": "warn",
-        "@typescript-eslint/consistent-type-definitions": [
-          "error",
-          "type"
-        ],
+        "@typescript-eslint/consistent-type-definitions": ["error", "type"],
         "@typescript-eslint/explicit-member-accessibility": [
           "error",
           {

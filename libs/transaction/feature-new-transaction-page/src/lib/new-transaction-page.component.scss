@@ -1,0 +1,17 @@
+@import '@taiga-ui/core/styles/taiga-ui-local';
+
+.submit-button {
+  width: 100%;
+
+  @media #{$tui-tablet-min} {
+    width: fit-content;
+  }
+}
+
+.type-expense ::ng-deep tui-radio [tuiWrapper][data-appearance="primary"] {
+  background-color: var(--tui-negative);
+}
+
+.type-income ::ng-deep tui-radio [tuiWrapper][data-appearance="primary"] {
+  background-color: var(--tui-positive);
+}

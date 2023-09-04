@@ -17,6 +17,8 @@ export class AuthedUserStore extends RxState<AuthedUserState> {
     this.set({
       user: null
     })
+
+    this.select().subscribe(console.debug)
   }
 
   public setUser(user: User | null): void {

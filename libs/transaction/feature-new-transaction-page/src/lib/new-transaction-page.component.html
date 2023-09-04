@@ -1,0 +1,81 @@
+<div class="tui-container tui-container_adaptive">
+  <h1>New transaction</h1>
+
+  <form [formGroup]="form" (submit)="onSubmitForm($event)">
+    <div tuiGroup class="tui-form__row" [collapsed]="true">
+      <tui-radio-block
+        contentAlign="right"
+        formControlName="type"
+        item="EXPENSE"
+        size="l"
+        class="type-expense"
+      >
+        <span>Расход</span>
+      </tui-radio-block>
+
+      <tui-radio-block
+        contentAlign="right"
+        formControlName="type"
+        item="INCOME"
+        size="l"
+        class="type-income"
+      >
+        <span>Доход</span>
+      </tui-radio-block>
+    </div>
+
+    <div class="tui-form__row">
+      <tui-input-number
+        formControlName="amount"
+        [tuiTextfieldPostfix]="'RUB' | tuiCurrency">
+        Amount
+      </tui-input-number>
+      <tui-error
+        formControlName="amount"
+        [error]="[] | tuiFieldError | async"
+      ></tui-error>
+    </div>
+
+    <div class="tui-form__row">
+      <tui-select *tuiLet="categories | async as categoryList"
+                  formControlName="categoryId"
+                  [tuiTextfieldLabelOutside]="true"
+                  [valueContent]="categoryList ? createLabelStringifier(categoryList) : null">
+        Category
+
+        <tui-data-list *tuiDataList>
+          <button tuiOption [value]="null">Не назначено</button>
+
+          <button
+            *ngFor="let category of categoryList"
+            tuiOption
+            [value]="category.id"
+          >
+            {{ category.name }}
+          </button>
+        </tui-data-list>
+      </tui-select>
+    </div>
+
+    <div class="tui-form__row">
+      <tui-input-date-time formControlName="createTime">
+        Date
+        <input tuiTextfield>
+      </tui-input-date-time>
+    </div>
+
+    <div class="tui-form__row">
+      <tui-text-area
+        formControlName="description"
+        [expandable]="true">Description</tui-text-area>
+      <tui-error
+        formControlName="description"
+        [error]="[] | tuiFieldError | async"
+      ></tui-error>
+    </div>
+
+    <div class="tui-form__row">
+      <button tuiButton type="submit" class="submit-button">Submit</button>
+    </div>
+  </form>
+</div>

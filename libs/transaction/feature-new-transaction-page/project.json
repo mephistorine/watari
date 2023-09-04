@@ -1,0 +1,34 @@
+{
+  "name": "transaction-feature-new-transaction-page",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/transaction/feature-new-transaction-page/src",
+  "prefix": "transaction",
+  "tags": ["domain:transaction", "type:feature"],
+  "projectType": "library",
+  "targets": {
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/transaction/feature-new-transaction-page/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "libs/transaction/feature-new-transaction-page/**/*.ts",
+          "libs/transaction/feature-new-transaction-page/**/*.html"
+        ]
+      }
+    }
+  }
+}
