@@ -9,15 +9,17 @@ import {
   TuiRootModule,
   TuiThemeNightModule
 } from "@taiga-ui/core"
-import { Component } from "@angular/core"
+import { Component, Inject } from "@angular/core"
 import { ActivationEnd, Router, RouterModule } from "@angular/router"
 import { TuiTabBarModule } from "@taiga-ui/addon-mobile"
 import { TuiActiveZoneModule, TuiPortalModule } from "@taiga-ui/cdk"
-import { filter, map, Observable } from "rxjs"
+import { EMPTY, filter, forkJoin, map, Observable, switchMap } from "rxjs"
 import { UserService } from "@watari/user/domain"
 import { hasProperty } from "@watari/shared/util-common"
 import { RiRoutes } from "@watari/shared/util-router"
 import { RxIf } from "@rx-angular/template/if"
+import { DATABASE_CONNECTION, DatabaseConnection } from "@watari/shared/util-database"
+import { CategoriesService } from "@watari/category/domain"
 
 const dbStructure: string = `begin;
   create table if not exists users (
@@ -84,53 +86,63 @@ export class AppComponent {
   public opened: boolean = false
 
   constructor(private readonly userService: UserService,
-              private readonly router: Router) {
-    /*const now: string = new Date().toISOString()
-    userService.getAuthedUser().pipe(
-      switchMap((user) => {
-        if (user === null) {
-          return EMPTY
+              private readonly router: Router,
+              @Inject(DATABASE_CONNECTION)
+              private readonly databaseConnection: DatabaseConnection,
+              private readonly categoryService: CategoriesService) {
+    this.databaseConnection.database.execA("select * from categories where name in ('Одежда', 'ЖКХ', 'Транспорт', 'Продукты', 'Еда вне дома')")
+      .then((rows) => {
+        if (rows.length > 0) {
+          return
         }
 
-        return forkJoin([
-          categoryService.create({
-            id: crypto.randomUUID(),
-            createTime: now,
-            name: "Одежда",
-            icon: "twemoji::t-shirt",
-            userId: user.id
-          }),
-          categoryService.create({
-            id: crypto.randomUUID(),
-            createTime: now,
-            name: "ЖКХ",
-            icon: "twemoji::hot-springs",
-            userId: user.id
-          }),
-          categoryService.create({
-            id: crypto.randomUUID(),
-            createTime: now,
-            name: "Транспорт",
-            icon: "twemoji::bus",
-            userId: user.id
-          }),
-          categoryService.create({
-            id: crypto.randomUUID(),
-            createTime: now,
-            name: "Продукты",
-            icon: "twemoji::red-apple",
-            userId: user.id
-          }),
-          categoryService.create({
-            id: crypto.randomUUID(),
-            createTime: now,
-            name: "Еда вне дома",
-            icon: "twemoji::fork-and-knife",
-            userId: user.id
+        const now: string = new Date().toISOString()
+        userService.getAuthedUser().pipe(
+          switchMap((user) => {
+            if (user === null) {
+              return EMPTY
+            }
+
+            return forkJoin([
+              categoryService.create({
+                id: crypto.randomUUID(),
+                createTime: now,
+                name: "Одежда",
+                icon: "twemoji::t-shirt",
+                userId: user.id
+              }),
+              categoryService.create({
+                id: crypto.randomUUID(),
+                createTime: now,
+                name: "ЖКХ",
+                icon: "twemoji::hot-springs",
+                userId: user.id
+              }),
+              categoryService.create({
+                id: crypto.randomUUID(),
+                createTime: now,
+                name: "Транспорт",
+                icon: "twemoji::bus",
+                userId: user.id
+              }),
+              categoryService.create({
+                id: crypto.randomUUID(),
+                createTime: now,
+                name: "Продукты",
+                icon: "twemoji::red-apple",
+                userId: user.id
+              }),
+              categoryService.create({
+                id: crypto.randomUUID(),
+                createTime: now,
+                name: "Еда вне дома",
+                icon: "twemoji::fork-and-knife",
+                userId: user.id
+              })
+            ])
           })
-        ])
+        ).subscribe()
       })
-    ).subscribe()*/
   }
 
   public onClickLogoutButton(): void {

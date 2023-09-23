@@ -5,11 +5,11 @@ import { MetaMaskSDK } from "@metamask/sdk"
 import { forkJoin, switchMap } from "rxjs"
 import { METAMASK_INSTANCE } from "@watari/shared/util-metamask"
 import { DATABASE_CONNECTION, openDatabaseConnection } from "@watari/shared/util-database"
+import { tuiSvgSrcInterceptors } from "@taiga-ui/core"
+import { TuiSafeHtml } from "@taiga-ui/cdk"
 
 import { provideApplicationConfig } from "./app/app.config"
 import { AppComponent } from "./app/app.component"
-import { tuiSvgSrcInterceptors } from "@taiga-ui/core"
-import { TuiSafeHtml } from "@taiga-ui/cdk"
 
 const metamask: MetaMaskSDK = new MetaMaskSDK()
 
@@ -42,13 +42,6 @@ const DATABASE_SCHEMA: string = `
   SELECT crsql_as_crr('categories');
   SELECT crsql_as_crr('transactions');
 `
-
-/*function appInit(): void {
-  const databaseConnection = inject(DATABASE_CONNECTION)
-  const ngZone = inject(NgZone)
-  databaseConnection.tblrx.onAny(() => ngZone.run())
-  // databaseConnection.tblrx.onAny(() => appRef.tick())
-}*/
 
 forkJoin([
   openDatabaseConnection(DATABASE_SCHEMA),
