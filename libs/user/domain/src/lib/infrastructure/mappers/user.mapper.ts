@@ -7,7 +7,7 @@ export class UserMapper implements Mapper<UserProps, User> {
   public mapTo(userProps: UserProps): User {
     const user: User = new User()
 
-    user.id = userProps.id
+    user.id = `0x${userProps.id}`
     user.name = userProps.name
     user.createTime = userProps.create_time
 
@@ -16,7 +16,7 @@ export class UserMapper implements Mapper<UserProps, User> {
 
   public mapFrom(entity: User): UserProps {
     return {
-      id: entity.id,
+      id: entity.id.slice(2),
       name: entity.name,
       create_time: entity.createTime
     }

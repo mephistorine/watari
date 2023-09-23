@@ -76,6 +76,10 @@
               {
                 "sourceTag": "domain:category",
                 "onlyDependOnLibsWithTags": ["domain:category", "domain:shared"]
+              },
+              {
+                "sourceTag": "domain:connect",
+                "onlyDependOnLibsWithTags": ["domain:connect", "domain:shared"]
               }
             ]
           }

@@ -15,3 +15,7 @@ export function isEmpty(value: any): value is Empty {
 export function hasProperty<T>(value: any, propertyName: string): value is T {
   return propertyName in value
 }
+
+export enum RiStorageKey {
+  loggedUserId = "loggedUserId"
+}

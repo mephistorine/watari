@@ -16,12 +16,38 @@
   <ng-container ngProjectAs="tuiOverPortals">
     <!-- Content over dropdowns -->
 
-    <nav *ngIf="isAppTabBarEnabled | async" class="app-tab-bar" tuiTabBar>
-      <a tuiTabBarItem routerLink="/" icon="tuiIconHomeLarge" routerLinkActive></a>
-      <a tuiTabBarItem routerLink="/transactions/new" icon="tuiIconPlusLarge" routerLinkActive></a>
+    <nav *rxIf="isAppTabBarEnabled" class="app-tab-bar" tuiTabBar>
+      <a tuiTabBarItem routerLink="/" icon="tuiIconHomeLarge" routerLinkActive>Home</a>
+      <a tuiTabBarItem routerLink="/connect" icon="tuiIconLinkLarge" routerLinkActive>Connect</a>
+      <a tuiTabBarItem routerLink="/transactions/new" icon="tuiIconPlusLarge" routerLinkActive>Add</a>
+      <button tuiTabBarItem type="button" icon="tuiIconMoreHorizontal" [tuiDropdown]="dropdownContent"
+              [tuiDropdownManual]="opened" (click)="opened = !opened">
+        More
+
+        <ng-template #dropdownContent>
+          <tui-data-list>
+            <button tuiOption (click)="onClickLogoutButton()">Logout</button>
+          </tui-data-list>
+        </ng-template>
+      </button>
     </nav>
   </ng-container>
   <ng-container ngProjectAs="tuiOverHints">
     <!-- Content over hints -->
   </ng-container>
 </tui-root>
+
+<ng-template #content let-activeZone>
+  <tui-data-list
+    tuiDataListDropdownManager
+    size="s"
+    [tuiActiveZoneParent]="activeZone"
+  >
+    <button
+      tuiOption
+      (click)="onClickLogoutButton()"
+    >
+      Logout
+    </button>
+  </tui-data-list>
+</ng-template>

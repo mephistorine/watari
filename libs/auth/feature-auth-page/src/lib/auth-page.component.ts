@@ -10,6 +10,7 @@ import { TuiInputModule } from "@taiga-ui/kit"
 import { FormBuilder, FormControl, ReactiveFormsModule, Validators } from "@angular/forms"
 import { Router } from "@angular/router"
 import { tuiMarkControlAsTouchedAndValidate } from "@taiga-ui/cdk"
+import { RiRoutes } from "@watari/shared/util-router"
 
 @Component({
   selector: "auth-auth-page",
@@ -41,7 +42,7 @@ export class AuthPageComponent {
 
   protected readonly isShowRegistration: BehaviorSubject<boolean> = new BehaviorSubject(false)
 
-  protected readonly nameField: FormControl<string> = this.formBuilder.nonNullable.control("", Validators.required)
+  protected readonly stringFormControl: FormControl<string> = this.formBuilder.nonNullable.control("", Validators.required)
 
   public onClickLoginButton(): void {
     this.isLoginButtonLoading.next(true)
@@ -66,8 +67,7 @@ export class AuthPageComponent {
               return
             }
 
-            this.usersService.setAuthedUser(user)
-            this.router.navigateByUrl("/")
+            this.redirectToHomePage(user)
           })
         )
       })
@@ -75,8 +75,8 @@ export class AuthPageComponent {
   }
 
   public onClickCompleteRegisterButton(): void {
-    if(this.nameField.invalid) {
-      tuiMarkControlAsTouchedAndValidate(this.nameField)
+    if(this.stringFormControl.invalid) {
+      tuiMarkControlAsTouchedAndValidate(this.stringFormControl)
       return
     }
 
@@ -86,17 +86,19 @@ export class AuthPageComponent {
 
     const user: User = new User()
     user.id = this.walletId
-    user.name = this.nameField.value
+    user.name = this.stringFormControl.value
     user.createTime = new Date().toISOString()
 
     this.usersService.create(user)
       .pipe(
         take(1),
-        tap((user: User) => {
-          this.usersService.setAuthedUser(user)
-          this.router.navigateByUrl("/")
-        })
+        tap((user: User) => this.redirectToHomePage(user))
       )
       .subscribe()
+  }
+
+  private redirectToHomePage(user: User): void {
+    this.usersService.setAuthedUser(user)
+    this.router.navigateByUrl(RiRoutes.home)
   }
 }

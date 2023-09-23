@@ -7,6 +7,7 @@ import { map, Observable, withLatestFrom } from "rxjs"
 import { CategoriesService, Category } from "@watari/category/domain"
 import { Transaction, TransactionsService } from "@watari/transaction/domain"
 import { AsyncPipe, DatePipe, NgForOf } from "@angular/common"
+import { RxPush } from "@rx-angular/template/push"
 
 type TransactionGroupItem = {
   categoryIcon: string
@@ -36,7 +37,8 @@ type TransactionGroup = {
     AsyncPipe,
     TuiFormatDatePipeModule,
     DatePipe,
-    TuiMarkerIconModule
+    TuiMarkerIconModule,
+    RxPush
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })

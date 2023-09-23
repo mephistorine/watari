@@ -1,0 +1,26 @@
+<div class="tui-container tui-container_adaptive">
+  <h1>Connect</h1>
+
+  <div class="tui-form__row">
+    <tui-input-copy [ngModel]="myPeerId" [readOnly]="true">
+      Peer ID
+      <input tuiTextfield />
+    </tui-input-copy>
+  </div>
+
+  <div class="tui-form__row">
+    <tui-input [formControl]="friendPeerIdControl">
+      Friend peer id
+      <input tuiTextfield />
+    </tui-input>
+
+    <tui-error
+      [formControl]="friendPeerIdControl"
+      [error]="[] | tuiFieldError | async"
+    ></tui-error>
+  </div>
+
+  <div class="tui-form__row">
+    <button tuiButton (click)="onClickConnectButton()">Connect</button>
+  </div>
+</div>

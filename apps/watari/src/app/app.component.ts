@@ -1,14 +1,23 @@
 import { NgDompurifySanitizer } from "@tinkoff/ng-dompurify"
-import { TUI_SANITIZER, TuiAlertModule, TuiDialogModule, TuiRootModule, TuiThemeNightModule } from "@taiga-ui/core"
+import {
+  TUI_SANITIZER,
+  TuiAlertModule,
+  TuiButtonModule,
+  TuiDataListModule,
+  TuiDialogModule,
+  TuiDropdownModule,
+  TuiRootModule,
+  TuiThemeNightModule
+} from "@taiga-ui/core"
 import { Component } from "@angular/core"
 import { ActivationEnd, Router, RouterModule } from "@angular/router"
 import { TuiTabBarModule } from "@taiga-ui/addon-mobile"
-import { TuiPortalModule } from "@taiga-ui/cdk"
-import { CategoriesService } from "../../../../libs/category/domain/src/lib/application/categories.service"
+import { TuiActiveZoneModule, TuiPortalModule } from "@taiga-ui/cdk"
 import { filter, map, Observable } from "rxjs"
 import { UserService } from "@watari/user/domain"
 import { hasProperty } from "@watari/shared/util-common"
-import { AsyncPipe, NgIf } from "@angular/common"
+import { RiRoutes } from "@watari/shared/util-router"
+import { RxIf } from "@rx-angular/template/if"
 
 const dbStructure: string = `begin;
   create table if not exists users (
@@ -52,7 +61,7 @@ commit;`
 
 @Component({
   standalone: true,
-  imports: [ RouterModule, TuiRootModule, TuiDialogModule, TuiAlertModule, TuiThemeNightModule, TuiTabBarModule, TuiPortalModule, NgIf, AsyncPipe ],
+  imports: [ RouterModule, TuiRootModule, TuiDialogModule, TuiAlertModule, TuiThemeNightModule, TuiTabBarModule, TuiPortalModule, TuiButtonModule, TuiActiveZoneModule, RxIf, TuiDropdownModule, TuiDataListModule ],
   selector: "ri-root",
   templateUrl: "./app.component.html",
   styleUrls: [ "./app.component.css" ],
@@ -62,7 +71,9 @@ export class AppComponent {
   protected isAppTabBarEnabled: Observable<boolean> = this.router.events.pipe(
     filter((event): event is ActivationEnd => event instanceof ActivationEnd),
     map((event) => {
-      if (hasProperty<{ enableAppTabBar: boolean }>(event.snapshot.data, "enableAppTabBar")) {
+      if(hasProperty<{
+        enableAppTabBar: boolean
+      }>(event.snapshot.data, "enableAppTabBar")) {
         return event.snapshot.data.enableAppTabBar
       }
 
@@ -70,8 +81,9 @@ export class AppComponent {
     })
   )
 
-  constructor(categoryService: CategoriesService,
-              userService: UserService,
+  public opened: boolean = false
+
+  constructor(private readonly userService: UserService,
               private readonly router: Router) {
     /*const now: string = new Date().toISOString()
     userService.getAuthedUser().pipe(
@@ -119,5 +131,10 @@ export class AppComponent {
         ])
       })
     ).subscribe()*/
+  }
+
+  public onClickLogoutButton(): void {
+    this.userService.setAuthedUser(null)
+    this.router.navigateByUrl(RiRoutes.login)
   }
 }

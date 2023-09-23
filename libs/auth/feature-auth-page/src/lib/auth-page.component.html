@@ -7,10 +7,12 @@
             (click)="onClickLoginButton()">Login with Metamask</button>
 
     <ng-container *rxIf="isRegister">
-      <tui-input [formControl]="nameField">
-        Type your name
-        <input tuiTextfield type="text">
-      </tui-input>
+      <div class="tui-form__row">
+        <tui-input [formControl]="stringFormControl">
+          Type your name
+          <input tuiTextfield type="text">
+        </tui-input>
+      </div>
 
       <button tuiButton (click)="onClickCompleteRegisterButton()">Register</button>
     </ng-container>

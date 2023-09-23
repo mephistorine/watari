@@ -43,6 +43,13 @@ const DATABASE_SCHEMA: string = `
   SELECT crsql_as_crr('transactions');
 `
 
+/*function appInit(): void {
+  const databaseConnection = inject(DATABASE_CONNECTION)
+  const ngZone = inject(NgZone)
+  databaseConnection.tblrx.onAny(() => ngZone.run())
+  // databaseConnection.tblrx.onAny(() => appRef.tick())
+}*/
+
 forkJoin([
   openDatabaseConnection(DATABASE_SCHEMA),
   loadConfig()
@@ -71,10 +78,7 @@ forkJoin([
         /*{
           provide: APP_INITIALIZER,
           multi: true,
-          useFactory: (appRef: ApplicationRef, databaseConnection: DatabaseConnection) => {
-            databaseConnection.tblrx.onAny(() => appRef.tick())
-          },
-          deps: [ ApplicationRef, DATABASE_CONNECTION ]
+          useFactory: appInit
         }*/
       ] as Provider[])
     )

@@ -1,5 +1,5 @@
 import { inject, Injectable } from "@angular/core"
-import { DATABASE_CONNECTION, DatabaseConnection } from "@watari/shared/util-database"
+import { DATABASE_CONNECTION, DatabaseConnection, DatabaseService } from "@watari/shared/util-database"
 import { defer, from, map, Observable } from "rxjs"
 
 import { TransactionProps } from "../entities/transaction.props"
@@ -14,6 +14,9 @@ export class TransactionsService {
 
   private readonly databaseConnection: DatabaseConnection = inject(DATABASE_CONNECTION)
 
+  constructor(private readonly databaseService: DatabaseService) {
+  }
+
   public findOneById(id: string | null): Observable<Transaction | null> {
     return defer(() => from(this.databaseConnection.database.execO<TransactionProps>("SELECT * FROM transactions WHERE id = ?", [ id ])))
       .pipe(
@@ -22,13 +25,15 @@ export class TransactionsService {
   }
 
   public findAll(): Observable<readonly Transaction[]> {
-    return defer(() => {
-      return from(this.databaseConnection.database.execO<TransactionProps>("SELECT * FROM transactions")).pipe(
-        map((transactions) => {
-          return transactions.map(this.mapper.mapTo)
-        })
-      )
-    })
+    return this.databaseService.query<TransactionProps[]>("SELECT * FROM transactions").pipe(
+      map((result) => {
+        if (!result.isLoading && result.error === null) {
+          return result.data.map(this.mapper.mapTo)
+        }
+
+        return []
+      })
+    )
   }
 
   public create(transactionProps: TransactionProps): Observable<Transaction> {

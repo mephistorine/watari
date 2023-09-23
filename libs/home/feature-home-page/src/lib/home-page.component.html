@@ -3,7 +3,7 @@
 </header>
 
 <div class="tui-container tui-container_adaptive txs-container">
-  <section *ngFor="let group of transactionGroups | async" class="tx-group">
+  <section *ngFor="let group of transactionGroups | push" class="tx-group">
     <header>
       <h3 class="tx-group-title">{{ group.date | date:"mediumDate" }}</h3>
 

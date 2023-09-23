@@ -1,5 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 
 :root {
-    --tui-primary: #8870FF;
+  --tui-primary: #8870FF;
+  --tui-heading-font: 'IBM Plex Sans', -apple-system, 'BlinkMacSystemFont', system-ui, 'Roboto', 'Segoe UI', 'Helvetica Neue', sans-serif;
+  --tui-text-font: 'IBM Plex Sans', -apple-system, 'BlinkMacSystemFont', system-ui, 'Roboto', 'Segoe UI', 'Helvetica Neue', sans-serif;
 }

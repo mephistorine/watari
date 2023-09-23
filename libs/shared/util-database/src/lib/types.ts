@@ -6,4 +6,5 @@ export type DatabaseConnection = {
   database: DB
   tblrx: TblRx
   rtc: Awaited<ReturnType<typeof wdbRtc>>
+  peerId: string
 }

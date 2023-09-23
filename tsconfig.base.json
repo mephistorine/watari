@@ -10,7 +10,7 @@
     "importHelpers": true,
     "target": "es2015",
     "module": "esnext",
-    "lib": ["es2020", "dom"],
+    "lib": ["ES2021", "dom"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
@@ -20,6 +20,10 @@
         "libs/auth/feature-auth-page/src/index.ts"
       ],
       "@watari/category/domain": ["libs/category/domain/src/index.ts"],
+      "@watari/connect/domain": ["libs/connect/domain/src/index.ts"],
+      "@watari/connect/feature-connect-page": [
+        "libs/connect/feature-connect-page/src/index.ts"
+      ],
       "@watari/home/domain": ["libs/home/domain/src/index.ts"],
       "@watari/home/feature-home-page": [
         "libs/home/feature-home-page/src/index.ts"
@@ -33,6 +37,7 @@
       "@watari/shared/util-metamask": [
         "libs/shared/util-metamask/src/index.ts"
       ],
+      "@watari/shared/util-router": ["libs/shared/util-router/src/index.ts"],
       "@watari/transaction/domain": ["libs/transaction/domain/src/index.ts"],
       "@watari/transaction/feature-new-transaction-page": [
         "libs/transaction/feature-new-transaction-page/src/index.ts"
