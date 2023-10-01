@@ -5,7 +5,7 @@
   "scripts": {
     "start": "nx serve watari --port 8000",
     "start:open": "nx serve watari --port 8000 --host 0.0.0.0",
-    "build:watari": "nx build watari"
+    "build:watari": "nx build watari --configuration=production"
   },
   "private": true,
   "dependencies": {

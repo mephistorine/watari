@@ -22,11 +22,6 @@
             "glob": "**/*",
             "input": "node_modules/@taiga-ui/icons/src",
             "output": "assets/taiga-ui/icons"
-          },
-          {
-            "glob": "config.json",
-            "input": "apps/watari/src/configs",
-            "output": "configs"
           }
         ],
         "styles": [
@@ -39,18 +34,13 @@
       },
       "configurations": {
         "production": {
-          "budgets": [
-//            {
-//              "type": "initial",
-//              "maximumWarning": "500kb",
-//              "maximumError": "1mb"
-//            },
-//            {
-//              "type": "anyComponentStyle",
-//              "maximumWarning": "2kb",
-//              "maximumError": "4kb"
-//            }
+          "fileReplacements": [
+            {
+              "replace": "apps/watari/src/assets/configs/config.json",
+              "with": "apps/watari/src/assets/configs/config.production.json"
+            }
           ],
+          "budgets": [],
           "outputHashing": "all"
         },
         "development": {
@@ -71,8 +61,8 @@
           "browserTarget": "watari:build:production",
           "fileReplacements": [
             {
-              "replace": "apps/pncl/src/configs/config.json",
-              "with": "apps/pncl/src/configs/config.production.json"
+              "replace": "apps/watari/src/assets/configs/config.json",
+              "with": "apps/watari/src/assets/configs/config.production.json"
             }
           ]
         },

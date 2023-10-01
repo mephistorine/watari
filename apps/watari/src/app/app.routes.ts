@@ -42,5 +42,10 @@ export const appRoutes: Route[] = [
     data: {
       enableAppTabBar: true
     }
+  },
+  {
+    path: "",
+    redirectTo: RiRoutes.home,
+    pathMatch: "full"
   }
 ]
