@@ -43,6 +43,14 @@ const DATABASE_SCHEMA: string = `
   SELECT crsql_as_crr('transactions');
 `
 
+/*;(async () => {
+  const sqlite: SQLite3 = await initWasm(() => SQLITE_WASM_FILE_URL)
+  const database: DB = await sqlite.open(":memory:")
+  await database.exec(DATABASE_SCHEMA)
+  console.debug(database)
+})()*/
+
+
 forkJoin([
   openDatabaseConnection(DATABASE_SCHEMA),
   loadConfig()
