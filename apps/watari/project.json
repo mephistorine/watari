@@ -22,7 +22,8 @@
             "glob": "**/*",
             "input": "node_modules/@taiga-ui/icons/src",
             "output": "assets/taiga-ui/icons"
-          }
+          },
+          "src/_redirects"
         ],
         "styles": [
           "node_modules/@taiga-ui/core/styles/taiga-ui-theme.less",
