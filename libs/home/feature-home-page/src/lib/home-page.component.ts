@@ -1,13 +1,14 @@
-import { ChangeDetectionStrategy, Component } from "@angular/core"
+import { ChangeDetectionStrategy, Component, Inject, NgZone } from "@angular/core"
 import { RouterLink } from "@angular/router"
 import { TuiAvatarModule, TuiMarkerIconModule } from "@taiga-ui/kit"
 import { TuiMoneyModule } from "@taiga-ui/addon-commerce"
 import { TuiButtonModule, TuiFormatDatePipeModule } from "@taiga-ui/core"
-import { map, Observable, withLatestFrom } from "rxjs"
+import { map, Observable, repeat, Subject, withLatestFrom } from "rxjs"
 import { CategoriesService, Category } from "@watari/category/domain"
 import { Transaction, TransactionsService } from "@watari/transaction/domain"
 import { AsyncPipe, DatePipe, NgForOf } from "@angular/common"
 import { RxPush } from "@rx-angular/template/push"
+import { DATABASE_CONNECTION, DatabaseConnection } from "@watari/shared/util-database"
 
 type TransactionGroupItem = {
   categoryIcon: string
@@ -43,7 +44,9 @@ type TransactionGroup = {
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HomePageComponent {
+  private retry: Subject<void> = new Subject()
   protected readonly transactionGroups: Observable<TransactionGroup[]> = this.transactionsService.findAll().pipe(
+    repeat({ delay: () => this.retry }),
     withLatestFrom(this.categoriesService.findAll()),
     map(([ transactions, categories ]) => {
       const categoryById: Map<string, Category> = categories.reduce((acc, curr) => {
@@ -104,6 +107,14 @@ export class HomePageComponent {
   )
 
   constructor(private readonly categoriesService: CategoriesService,
-              private readonly transactionsService: TransactionsService) {
+              private readonly transactionsService: TransactionsService,
+              @Inject(DATABASE_CONNECTION)
+              private readonly databaseConnection: DatabaseConnection,
+              private readonly ngZone: NgZone) {
+    this.databaseConnection.tblrx.onAny(() => {
+      this.ngZone.run(() => {
+        this.retry.next()
+      })
+    })
   }
 }

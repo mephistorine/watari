@@ -1,24 +1,7 @@
 import { Inject, Injectable } from "@angular/core"
 import { DATABASE_CONNECTION, DatabaseConnection } from "@watari/shared/util-database"
 
-import {
-  catchError,
-  defer,
-  EMPTY,
-  forkJoin,
-  from,
-  fromEventPattern,
-  isObservable,
-  map,
-  Observable,
-  of,
-  retry,
-  Subject,
-  Subscriber,
-  switchMap,
-  takeUntil,
-  tap
-} from "rxjs"
+import { defer, from, map, Observable } from "rxjs"
 
 type QueryResultIsLoading = {
   data: null
@@ -63,7 +46,16 @@ export class DatabaseService {
                   bindings: (readonly SQLiteCompatibleType[]) | Observable<readonly SQLiteCompatibleType[]> = [],
                   rowId: bigint | null = null,
                   updateTypes: number[] = allUpdateTypes): Observable<QueryResult<T>> {
-    return new Observable<QueryResult<T>>((subscriber: Subscriber<QueryResult<T>>) => {
+    return defer(() => from(this.databaseConnection.database.execO(query))).pipe(
+      map((rows) => {
+        return {
+          isLoading: false,
+          data: rows,
+          error: null
+        } as any
+      })
+    )
+    /*return new Observable<QueryResult<T>>((subscriber: Subscriber<QueryResult<T>>) => {
       const onDestroy: Subject<void> = new Subject<void>()
 
       subscriber.next({
@@ -136,7 +128,7 @@ export class DatabaseService {
         onDestroy.next()
         onDestroy.complete()
       }
-    })
+    })*/
   }
 
   private getUsedTables(query: string): Observable<readonly string[]> {

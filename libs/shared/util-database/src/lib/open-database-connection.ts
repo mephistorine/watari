@@ -24,6 +24,9 @@ export async function openDatabaseConnection(schema: string): Promise<DatabaseCo
       peerId: peerId
     }
 
+    context.rtc.onConnectionsChanged((d, r) => console.log("connection changes", d, r))
+
+    ;(window as any).riContext = context
     return context
   } catch (error) {
     debugger
