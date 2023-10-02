@@ -21,7 +21,9 @@
   </div>
 
   <div class="tui-form__row actions">
-    <button tuiButton size="m" (click)="onClickConnectButton()">Connect</button>
+    <button tuiButton size="m" [showLoader]="loading | push" (click)="onClickConnectButton()">Connect</button>
     <button tuiButton size="m" appearance="secondary" (click)="onClickShareButton()">Share</button>
   </div>
+
+  <div class="qr-code-container" [innerHTML]="connectSvg | push"></div>
 </div>
