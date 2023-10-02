@@ -10,5 +10,6 @@
 }
 
 .qr-code-container ::ng-deep svg {
-  max-width: 80%;
+  // В Safari max-width не работает
+  width: 80%;
 }

@@ -53,7 +53,7 @@ export class ConnectPageComponent {
               @Inject(LOCATION)
               private readonly location: Location) {
     this.databaseConnection.rtc.onConnectionsChanged((pending, established) => {
-      this.loading.next(pending.length < 0)
+      this.loading.next(pending.length <= 0)
     })
 
     this.activatedRoute.queryParams.pipe(
